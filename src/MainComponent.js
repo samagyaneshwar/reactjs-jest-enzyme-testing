@@ -1,16 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Todo from "./Todo";
+import TodoComponent from "./TodoComponent";
 import FormComponent from "./FormComponent";
 import NavComponent from "./NavComponent";
 
-export default function Main() {
+export default function MainComponent() {
   return (
     <BrowserRouter>
       <NavComponent />
       <Routes>
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/todo" element={<TodoComponent />} />
         <Route path="/form" element={<FormComponent />} />
-        <Route path="*" element={<Todo />} />
+        <Route path="*" element={<TodoComponent />} />
       </Routes>
     </BrowserRouter>
   );

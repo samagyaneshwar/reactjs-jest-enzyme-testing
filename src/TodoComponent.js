@@ -39,7 +39,7 @@ export const reducer = (state, action) => {
   }
 };
 
-export default function Todo() {
+export default function TodoComponent() {
   const [todos, dispatch] = React.useReducer(reducer, initialState);
   const [text, setText] = React.useState("");
 
@@ -92,7 +92,7 @@ export default function Todo() {
           </Button>
         </Col>
         <Col lg={12}>
-          <h4 className="mt-4">Todo:</h4>
+          <h4 className="mt-4">MainComponent:</h4>
         </Col>
         <Col lg={12}>
           {todos?.map?.((todo) => {

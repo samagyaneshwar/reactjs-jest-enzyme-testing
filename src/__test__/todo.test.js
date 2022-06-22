@@ -1,10 +1,10 @@
 import { mount } from "enzyme";
-import Todo, { ACTION, initialState, reducer } from "../Todo";
+import TodoComponent, { ACTION, initialState, reducer } from "../TodoComponent";
 import { generateGuid } from "../utils";
 import renderer from "react-test-renderer";
 
 const component = () => {
-    const wrapper = mount(<Todo />);
+    const wrapper = mount(<TodoComponent />);
     const addButton = wrapper.find("#todoAddBtn").hostNodes();
     const input = wrapper.find("#todoInput").hostNodes();
 
@@ -15,10 +15,10 @@ const component = () => {
     };
 };
 
-describe("Todo component", () => {
+describe("TodoComponent component", () => {
 
-    it('should render Todo component', () => {
-        const component = renderer.create(<Todo />);
+    it('should render TodoComponent component', () => {
+        const component = renderer.create(<TodoComponent />);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     })
