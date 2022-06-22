@@ -10,8 +10,8 @@ import {
 import "./style.css";
 import { generateGuid } from "./utils";
 
-const initialState = [];
-const ACTION = {
+export const initialState = [];
+export const ACTION = {
   ADD: "ADD",
   COMPLETE: "COMPLETE",
   REMOVE: "REMOVE",
