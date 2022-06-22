@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import Todo from "../Todo";
 import { generateGuid } from "../utils";
+import renderer from "react-test-renderer";
 
 const component = () => {
     const wrapper = mount(<Todo />);
@@ -17,8 +18,9 @@ const component = () => {
 describe("Todo component", () => {
 
     it('should render Todo component', () => {
-        const component = shallow(<Todo />);
-        expect(component).toMatchSnapshot();
+        const component = renderer.create(<Todo />);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     })
 
     it("should render add button", () => {
@@ -40,6 +42,13 @@ describe("Todo component", () => {
 
         const todos = wrapper.find(".todo-wrapper").hostNodes();
         expect(todos).toHaveLength(1);
+    });
+
+    it('should not add todo if text is empty', () => {
+        const { wrapper, addButton } = component();
+        addButton.simulate("click");
+        const todos = wrapper.find(".todo-wrapper").hostNodes();
+        expect(todos).toHaveLength(0);
     });
 
     it("should mark completed", () => {
