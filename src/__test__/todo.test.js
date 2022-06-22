@@ -1,10 +1,6 @@
 import React from "react";
-import Enzyme, { mount, shallow } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { mount, shallow } from "enzyme";
 import App from "../App";
-import { expect } from "chai";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const component = () => {
     const wrapper = mount(<App />);
@@ -19,14 +15,20 @@ const component = () => {
 };
 
 describe("App component", () => {
+
+    it('should render App component', () => {
+        const component = shallow(<App />);
+        expect(component).toMatchSnapshot();
+    })
+
     it("should render add button", () => {
         const { addButton } = component();
-        expect(addButton).have.length(1);
+        expect(addButton).toHaveLength(1)
     });
 
     it("should render input", () => {
         const { input } = component();
-        expect(input).have.length(1);
+        expect(input).toHaveLength(1);
     });
 
     it("should add todo", () => {
@@ -37,7 +39,7 @@ describe("App component", () => {
         addButton.simulate("click");
 
         const todos = wrapper.find(".todo-wrapper");
-        expect(todos).have.length(1);
+        expect(todos).toHaveLength(1);
     });
 
     it("should mark completed", () => {
@@ -49,7 +51,7 @@ describe("App component", () => {
         wrapper.find(".todo-wrapper").first().find(".todo").simulate("click");
         const completed = wrapper.find(".todo-wrapper").first().find(".todo").hasClass("strike");
 
-        expect(completed).to.true;
+        expect(completed).toBeTruthy();
     });
 
     it("should remove todo", () => {
@@ -58,10 +60,10 @@ describe("App component", () => {
         input.simulate("change", { target: { value: "sample todo 1" } });
         addButton.simulate("click");
 
-        expect(wrapper.find(".todo-wrapper").at(0).exists()).to.be.true;
+        expect(wrapper.find(".todo-wrapper").at(0).exists()).toBeTruthy();
 
         wrapper.find(".todo-wrapper").at(0).find(".remove").simulate("click");
 
-        expect(wrapper.find(".todo-wrapper").at(0).exists()).to.be.false;
+        expect(wrapper.find(".todo-wrapper").at(0).exists()).toBeFalsy();
     });
 });
