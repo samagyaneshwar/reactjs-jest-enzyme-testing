@@ -73,9 +73,9 @@ export default function App() {
   };
 
   return (
-    <Container>
+    <Container className="mt-4">
       <Row>
-        <Col lg={12} className="mt-2">
+        <Col lg={12}>
           <h4>Add todo:</h4>
         </Col>
         <Col lg={10}>
