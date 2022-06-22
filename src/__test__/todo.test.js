@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import App from "../App";
+import { generateGuid } from "../utils";
 
 const component = () => {
     const wrapper = mount(<App />);
@@ -65,5 +66,10 @@ describe("App component", () => {
         wrapper.find(".todo-wrapper").at(0).find(".remove").simulate("click");
 
         expect(wrapper.find(".todo-wrapper").at(0).exists()).toBeFalsy();
+    });
+
+    it('generateGuid() should return uuid of length - 36', () => {
+        const uuid = generateGuid();
+        expect(uuid).toHaveLength(36);
     });
 });
