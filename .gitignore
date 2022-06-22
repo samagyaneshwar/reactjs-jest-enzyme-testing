@@ -1,2 +1,4 @@
 package-lock.json
 node_modules
+src/__test__/__snapshots__/
+coverage
