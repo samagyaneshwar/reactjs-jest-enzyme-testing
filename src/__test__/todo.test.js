@@ -1,10 +1,10 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import App from "../App";
+import Todo from "../Todo";
 import { generateGuid } from "../utils";
 
 const component = () => {
-    const wrapper = mount(<App />);
+    const wrapper = mount(<Todo />);
     const addButton = wrapper.find("#todoAddBtn").hostNodes();
     const input = wrapper.find("#todoInput").hostNodes();
 
@@ -18,7 +18,7 @@ const component = () => {
 describe("Todo component", () => {
 
     it('should render Todo component', () => {
-        const component = shallow(<App />);
+        const component = shallow(<Todo />);
         expect(component).toMatchSnapshot();
     })
 

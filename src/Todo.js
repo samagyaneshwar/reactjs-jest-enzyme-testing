@@ -39,7 +39,7 @@ export const reducer = (state, action) => {
   }
 };
 
-export default function App() {
+export default function Todo() {
   const [todos, dispatch] = React.useReducer(reducer, initialState);
   const [text, setText] = React.useState("");
 
