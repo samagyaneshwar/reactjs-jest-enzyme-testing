@@ -1,5 +1,5 @@
-import { mount, shallow } from "enzyme";
-import Todo from "../Todo";
+import { mount } from "enzyme";
+import Todo, { ACTION, initialState, reducer } from "../Todo";
 import { generateGuid } from "../utils";
 import renderer from "react-test-renderer";
 
@@ -79,5 +79,29 @@ describe("Todo component", () => {
     it('generateGuid() should return uuid of length - 36', () => {
         const uuid = generateGuid();
         expect(uuid).toHaveLength(36);
+    });
+
+    it("reducer should return default state for invalid action type", () => {
+        const action = {
+            type: "INVALID"
+        };
+        const data = reducer(initialState, action);
+        expect(data).toStrictEqual(initialState);
+    });
+
+    it('reducer should return all todos in case of invalid todo id for complete action', () => {
+
+        const initialState = [{
+            id: generateGuid(),
+            is_completed: false,
+            text: "sample todo 1"
+        }];
+        const action = {
+            id: generateGuid(),
+            type: ACTION.COMPLETE
+        };
+        const data = reducer(initialState, action);
+        expect(data).toStrictEqual(initialState);
+
     });
 });
