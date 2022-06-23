@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = (path) => {
+export const url = (path) => {
     return `https://jsonplaceholder.typicode.com/${path}`
 }
 
