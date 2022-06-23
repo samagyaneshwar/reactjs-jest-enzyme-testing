@@ -2,7 +2,7 @@ import moxios from "moxios";
 import { deletePost, fetchPosts } from "../../redux/slices/postsSlice";
 import { store } from "../../redux/store";
 
-describe.only("Posts redux", () => {
+describe("Posts redux", () => {
   beforeEach(() => {
     moxios.install();
   });
