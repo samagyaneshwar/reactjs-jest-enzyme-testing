@@ -8,6 +8,6 @@ export const getPosts = () => {
     return axios.get(url("posts"));
 }
 
-export const deletePost = (id) => {
+export const deletePostById = (id) => {
     return axios.delete(url(`posts/${id}`));
 }
