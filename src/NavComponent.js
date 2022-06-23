@@ -11,6 +11,7 @@ export default function NavComponent() {
           <Nav className="me-auto">
             <NavLink to="/todo" className={'nav-link'}>Todo</NavLink>
             <NavLink to="/form" className={'nav-link'}>Form</NavLink>
+            <NavLink to="/posts" className={'nav-link'}>Posts</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
