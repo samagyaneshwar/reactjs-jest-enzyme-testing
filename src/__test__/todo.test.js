@@ -2,7 +2,6 @@ import { mount } from "enzyme";
 import TodoComponent, { ACTION, initialState, reducer } from "../TodoComponent";
 import { generateGuid } from "../utils";
 import renderer from "react-test-renderer";
-import { Button } from "react-bootstrap";
 
 const component = () => {
     const wrapper = mount(<TodoComponent />);
