@@ -14,7 +14,7 @@ const PostsComponent = (props) => {
       <h2>Posts:</h2>
       <Row>
         {posts.map((post) => (
-          <Col lg={4} className="mb-3" key={post.id}>
+          <Col lg={4} className="mb-3 post" key={post.id}>
             <Card>
               <Card.Body>
                 <Card.Title>{post.id}. {post.title}</Card.Title>
