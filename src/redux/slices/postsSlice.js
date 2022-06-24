@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPosts } from "../../api";
 
-const initialState = {
+export const postsInitialState = {
   posts: [],
   error: null,
   loading: false
@@ -18,7 +18,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 
 export const postsSlice = createSlice({
   name: "posts",
-  initialState,
+  initialState: postsInitialState,
   reducers: {
     deletePost: (state, action) => {
       state.posts = state.posts.filter((post) => post.id !== action.payload.id);
