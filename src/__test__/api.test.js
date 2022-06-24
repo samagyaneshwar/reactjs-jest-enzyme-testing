@@ -1,7 +1,7 @@
-const { default: axios } = require("axios");
-const moxios = require("moxios");
-const Sinon = require("sinon");
-const { url, getPosts, deletePostById } = require("../api");
+import moxios from "moxios";
+import Sinon from "sinon";
+import { url, getPosts, deletePostById } from "../api";
+import { posts } from "./mock/data";
 
 describe("API test", () => {
   beforeEach(() => {
@@ -12,31 +12,10 @@ describe("API test", () => {
     moxios.uninstall();
   });
 
-  const expected = [
-    {
-      userId: 1,
-      id: 1,
-      title: "title one",
-      body: "body one",
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: "title two",
-      body: "body two",
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: "title three",
-      body: "body three",
-    },
-  ];
-
   it("should return the posts", (done) => {
     moxios.stubRequest(url("posts"), {
       status: 200,
-      response: expected,
+      response: posts,
     });
 
     let onFulfilled = Sinon.spy();
@@ -44,14 +23,14 @@ describe("API test", () => {
 
     moxios.wait(() => {
       const response = onFulfilled.getCall(0).args[0].data;
-      expect(response).toEqual(expected);
+      expect(response).toEqual(posts);
       done();
     });
   });
 
   it("should delete the post", (done) => {
 
-    const post = expected[0];
+    const post = posts[0];
 
     moxios.stubRequest(url("posts/1"), {
       status: 200,

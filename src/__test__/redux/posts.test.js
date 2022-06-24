@@ -1,6 +1,7 @@
 import moxios from "moxios";
 import { deletePost, fetchPosts } from "../../redux/slices/postsSlice";
 import { store } from "../../redux/store";
+import { posts } from "../mock/data";
 
 describe("Posts redux", () => {
   beforeEach(() => {
@@ -12,76 +13,23 @@ describe("Posts redux", () => {
   });
 
   it("should update the posts correctly", async () => {
-    const expectedState = [
-      {
-        userId: 1,
-        id: 1,
-        title: "title one",
-        body: "body one",
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: "title two",
-        body: "body two",
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: "title three",
-        body: "body three",
-      },
-    ];
-
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: expectedState,
+        response: posts,
       });
     });
 
     await store.dispatch(fetchPosts());
-    const { posts } = store.getState();
-    expect(posts.posts).toEqual(expectedState);
+    const state = store.getState();
+    expect(state.posts.posts).toEqual(posts);
   });
 
   it("should delete the post", async () => {
-    const payload = [
-      {
-        userId: 1,
-        id: 1,
-        title: "title one",
-        body: "body one",
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: "title two",
-        body: "body two",
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: "title three",
-        body: "body three",
-      },
-    ];
+    const payload = posts;
 
-    const expectedState = [
-      {
-        userId: 1,
-        id: 1,
-        title: "title one",
-        body: "body one",
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: "title two",
-        body: "body two",
-      },
-    ];
+    const expectedState = posts.slice(0, 2);
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -93,8 +41,8 @@ describe("Posts redux", () => {
 
     await store.dispatch(fetchPosts());
     await store.dispatch(deletePost({ id: 3 }));
-    const { posts } = store.getState();
+    const state = store.getState();
 
-    expect(posts.posts).toEqual(expectedState);
+    expect(state.posts.posts).toEqual(expectedState);
   });
 });
