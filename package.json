@@ -56,7 +56,8 @@
       "enzyme-to-json/serializer"
     ],
     "coveragePathIgnorePatterns": [
-      "src/index.js"
+      "src/index.js",
+      "src/__test__/mock/*"
     ]
   }
 }
