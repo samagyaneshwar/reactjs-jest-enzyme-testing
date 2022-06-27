@@ -92,7 +92,7 @@ export default function TodoComponent() {
           </Button>
         </Col>
         <Col lg={12}>
-          <h4 className="mt-4">MainComponent:</h4>
+          <h4 className="mt-4">Todos:</h4>
         </Col>
         <Col lg={12}>
           {todos?.map?.((todo) => {
